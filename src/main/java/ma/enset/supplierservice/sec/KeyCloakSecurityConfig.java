@@ -1,6 +1,5 @@
-package ma.enset.productsapp.sec;
+package ma.enset.supplierservice.sec;
 
-import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,8 +24,8 @@ public class KeyCloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
 
-//                .authorizeRequests().antMatchers("/h2-console/**").permitAll()
-        http.authorizeRequests().antMatchers("/products/**","/suppliers/**").authenticated();
+                http.authorizeRequests().antMatchers("/suppliers/**").hasAuthority("MANAGER");
+//        http.authorizeRequests().antMatchers("/products/**","/suppliers/**").authenticated();
 //        http .anyRequest().authenticated();
     }
 }
